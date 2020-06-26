@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+    <!-- START HEAD -->
+    <head>
+        <meta charset="utf-8" />
+        <title>CS:GO Skin Tester</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+        <meta content="CS:GO Skin Tester" name="description"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="chescos" name="author" />
+    </head>
+    <!-- END HEAD -->
+
+    <!-- START BODY -->
+    <body>
+
+        <!-- START CONTENT -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="page-header mt-5">CS:GO Skin Tester</h1>
+                    <form>
+                        <div class="form-group">
+                            <label for="secret">Inspect Link:</label>
+                            <input type="text" class="form-control" id="secret">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="inspect">Inspect</button>
+                    </form>
+                    <!-- END GENERATOR -->
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT -->
+
+        <!-- START SCRIPTS -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+        <!-- END SCRIPTS -->
+
+        <script>
+        document.getElementById("inspect").addEventListener("click", function () {
+          axios.post('http://159.69.145.205/inspect-links', {
+            link: document.getElementById("inspect").value,
+          })
+          .then(function (response) {
+            console.log(response);
+            if (response.data.needs_to_connect) {
+              console.log('Connecting...');
+              window.location = response.data.connect_to_url;
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        });
+        </script>
+
+    </body>
+    <!-- END BODY -->
+
+</html>
