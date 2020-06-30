@@ -39,7 +39,7 @@
 
         <script>
         document.getElementById("inspect").addEventListener("click", function () {
-          axios.post('https://csgo-skin-tester.chescos.me/inspect-links', {
+          axios.post('https://api.csgoskins.gg/inspect-links', {
             link: document.getElementById("link").value,
           })
           .then(function (response) {
