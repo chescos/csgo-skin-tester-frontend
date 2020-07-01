@@ -1,133 +1,151 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CS:GO Skin Tester</title>
-    <meta content="CS:GO Skin Tester" name="description"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>CS:GO Skin Tester</title>
+  <meta content="CS:GO Skin Tester" name="description"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/vue"></script>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/vue"></script>
 
-    <style>
-        .fade-enter-active, .fade-leave-active {
-            transition: opacity .5s;
-        }
-        .fade-enter, .fade-leave-to {
-            opacity: 0;
-        }
-    </style>
+  <style>
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to {
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-900 text-white">
 <div id="app">
-    <div class="flex h-screen">
-        <div class="m-auto w-full max-w-lg">
-            <form class="bg-gray-800 shadow-md rounded p-12">
-                <div class="mb-4">
-                    <label class="block text-sm font-bold mb-2" for="inspect_link">
-                        Inspect Link
-                    </label>
-                    <input v-model="link" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="inspect_link" type="text" placeholder="Paste your inspect link...">
-                </div>
-                <div class="flex items-center justify-between">
-                    <button v-on:click="inspectLink" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                        Test Skin In-Game
-                    </button>
-                </div>
-            </form>
+  <div class="flex h-screen">
+    <div class="m-auto w-full max-w-lg">
+      <form class="bg-gray-800 shadow-md rounded p-12">
+        <div class="mb-4">
+          <label class="block text-sm font-bold mb-2" for="inspect_link">
+            Inspect Link
+          </label>
+          <input v-model="link"
+                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                 id="inspect_link" type="text" placeholder="Paste your inspect link...">
         </div>
+        <div class="flex items-center justify-between">
+          <button v-on:click="inspectLink"
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="button">
+            Test Skin In-Game
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <transition name="fade">
-        <div v-if="notification !== null" class="absolute bottom-0 left-0 right-0 bg-blue-800 border-t-4 border-blue-500 rounded-b text-white px-4 py-3 shadow-md" role="alert">
-            <div class="flex">
-                <div class="py-1">
-                    <svg class="fill-current h-6 w-6 text-blue-200 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/>
-                    </svg>
-                </div>
-                <div>
-                    <p class="font-bold">{{ notification.title }}</p>
-                    <p class="text-sm">{{ notification.message }}</p>
-                </div>
-            </div>
+  <transition name="fade">
+    <div v-if="notification !== null"
+         class="absolute bottom-0 left-0 right-0 bg-blue-800 border-t-4 border-blue-500 rounded-b text-white px-4 py-3 shadow-md"
+         role="alert">
+      <div class="flex">
+        <div class="py-1">
+          <svg class="fill-current h-6 w-6 text-blue-200 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path
+              d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/>
+          </svg>
         </div>
-    </transition>
+        <div>
+          <p class="font-bold">{{ notification.title }}</p>
+          <p class="text-sm">{{ notification.message }}</p>
+        </div>
+      </div>
+    </div>
+  </transition>
 </div>
 
 <script>
-    const app = new Vue({
-        el: '#app',
-        data: {
-            link: '',
-            notification: null,
-        },
-        methods: {
-            inspectLink: function (event) {
-                this.clearNotification();
+  const app = new Vue({
+    el: '#app',
+    data: {
+      link: '',
+      notification: null,
+    },
+    methods: {
+      inspectLink: function (event) {
+        this.clearNotification();
 
-                fetch('https://api.csgoskins.gg/inspect-links', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        link: this.link,
-                    }),
-                })
-                    .then((res) => res.json())
-                    .then((res) => {
-                        console.log(res);
+        const inspectLinkRegex = /^steam:\/\/rungame\/730\/(?:[0-9]+)\/\+csgo_econ_action_preview/;
 
-                        if (res.success) {
-                            if (res.needs_to_connect) {
-                                window.location = res.connect_to_url;
-
-                                this.createNotification(
-                                    'Skin Sent',
-                                    'The skin has been sent to the CS:GO test server, please connect.',
-                                    false,
-                                );
-                            } else {
-                                this.createNotification(
-                                    'Skin Equipped',
-                                    'You have been equipped with the selected skin in the CS:GO test server.',
-                                    false,
-                                );
-                            }
-                        } else {
-                            this.createNotification(
-                                'Request Failed',
-                                res.message,
-                                true,
-                            );
-                        }
-                    })
-                    .catch((error) => {
-                        console.log(error);
-
-                        this.createNotification(
-                            'Request Failed',
-                            'Something went wrong, please try again.',
-                            true,
-                        );
-                    });
+        if (!inspectLinkRegex.test(this.link)) {
+          this.createNotification(
+            'Invalid Inspect Link',
+            'Please enter a valid CS:GO inspect link.',
+            false,
+          );
+        } else {
+          fetch('https://api.csgoskins.gg/inspect-links', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
             },
+            body: JSON.stringify({
+              link: this.link,
+            }),
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              console.log(res);
 
-            createNotification(title, message, isError = false) {
-                this.notification = {
-                    title,
-                    message,
-                    isError,
-                };
-            },
+              if (res.success) {
+                if (res.needs_to_connect) {
+                  window.location = res.connect_to_url;
 
-            clearNotification() {
-                this.notification = null;
-            }
+                  this.createNotification(
+                    'Skin Sent',
+                    'The skin has been sent to the CS:GO test server, please connect.',
+                    false,
+                  );
+                } else {
+                  this.createNotification(
+                    'Skin Equipped',
+                    'You have been equipped with the selected skin in the CS:GO test server.',
+                    false,
+                  );
+                }
+              } else {
+                this.createNotification(
+                  'Request Failed',
+                  res.message,
+                  true,
+                );
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+
+              this.createNotification(
+                'Request Failed',
+                'Something went wrong, please try again.',
+                true,
+              );
+            });
         }
-    })
+      },
+
+      createNotification(title, message, isError = false) {
+        this.notification = {
+          title,
+          message,
+          isError,
+        };
+      },
+
+      clearNotification() {
+        this.notification = null;
+      }
+    }
+  })
 </script>
 </body>
 </html>
