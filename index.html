@@ -16,6 +16,30 @@
     .fade-enter, .fade-leave-to {
       opacity: 0;
     }
+
+    .loader {
+      border-top-color: transparent;
+      -webkit-animation: spinner 0.8s linear infinite;
+      animation: spinner 0.8s linear infinite;
+    }
+
+    @-webkit-keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
 
@@ -34,9 +58,12 @@
         </div>
         <div class="flex items-center justify-between">
           <button v-on:click="inspectLink"
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="button">
-            Test Skin In-Game
+                  v-bind:class="{ 'cursor-not-allowed': isLoading, 'opacity-50': isLoading }"
+                  class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="button" :disabled="isLoading">
+
+            <div v-if="isLoading" class="loader ease-linear rounded-full border-2 border-gray-200 h-4 w-4 mr-3"></div>
+            <span>Test Skin In-Game</span>
           </button>
         </div>
       </form>
@@ -69,9 +96,14 @@
     data: {
       link: '',
       notification: null,
+      isLoading: false,
     },
     methods: {
       inspectLink: function (event) {
+        if (this.isLoading) {
+          return;
+        }
+
         this.clearNotification();
 
         const inspectLinkRegex = /^steam:\/\/rungame\/730\/(?:[0-9]+)\/\+csgo_econ_action_preview/;
@@ -82,55 +114,61 @@
             'Please enter a valid CS:GO inspect link.',
             false,
           );
-        } else {
-          fetch('https://api.csgoskins.gg/inspect-links', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              link: this.link,
-            }),
-          })
-            .then((res) => res.json())
-            .then((res) => {
-              console.log(res);
 
-              if (res.success) {
-                if (res.needs_to_connect) {
-                  window.location = res.connect_to_url;
+          return;
+        }
 
-                  this.createNotification(
-                    'Skin Sent',
-                    'The skin has been sent to the CS:GO test server, please connect.',
-                    false,
-                  );
-                } else {
-                  this.createNotification(
-                    'Skin Equipped',
-                    'You have been equipped with the selected skin in the CS:GO test server.',
-                    false,
-                  );
-                }
+        this.isLoading = true;
+
+        fetch('https://api.csgoskins.gg/inspect-links', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            link: this.link,
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res);
+            this.isLoading = false;
+
+            if (res.success) {
+              if (res.needs_to_connect) {
+                window.location = res.connect_to_url;
+
+                this.createNotification(
+                  'Skin Sent',
+                  'The skin has been sent to the CS:GO test server, please connect.',
+                  false,
+                );
               } else {
                 this.createNotification(
-                  'Request Failed',
-                  res.message,
-                  true,
+                  'Skin Equipped',
+                  'You have been equipped with the selected skin in the CS:GO test server.',
+                  false,
                 );
               }
-            })
-            .catch((error) => {
-              console.log(error);
-
+            } else {
               this.createNotification(
                 'Request Failed',
-                'Something went wrong, please try again.',
+                res.message,
                 true,
               );
-            });
-        }
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            this.isLoading = false;
+
+            this.createNotification(
+              'Request Failed',
+              'Something went wrong, please try again.',
+              true,
+            );
+          });
       },
 
       createNotification(title, message, isError = false) {
