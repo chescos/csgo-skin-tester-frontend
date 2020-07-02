@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <title>CS:GO Skin Tester</title>
-  <meta name="description" content="Test any CS:GO skin in-game on a CS:GO community server. You can equip the skin, walk around with it, and inspect it in the actual game environment." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+        content="Test any CS:GO skin in-game on a CS:GO community server. You can equip the skin, walk around with it, and inspect it in the actual game environment."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -80,7 +81,7 @@
         </div>
         <div class="flex items-center justify-between">
           <button v-on:click="inspectLink"
-                  v-bind:class="{ 'cursor-not-allowed': isLoading, 'opacity-50': isLoading }"
+                  v-bind:class="{ 'cursor-not-allowed opacity-50': isLoading }"
                   class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="button" :disabled="isLoading">
 
@@ -94,11 +95,12 @@
 
   <transition name="fade">
     <div v-if="notification !== null"
-         class="absolute bottom-0 left-0 right-0 bg-blue-800 border-t-4 border-blue-500 rounded-b text-white px-4 py-3 shadow-md"
+         v-bind:class="{ 'bg-blue-800 border-blue-500': !notification.isError, 'bg-red-800 border-red-500': notification.isError }"
+         class="absolute bottom-0 left-0 right-0 border-t-4 rounded-b text-white px-4 py-3 shadow-md"
          role="alert">
       <div class="flex">
         <div class="py-1">
-          <svg class="fill-current h-6 w-6 text-blue-200 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <svg class="fill-current h-6 w-6 text-white mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path
               d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/>
           </svg>
@@ -134,7 +136,7 @@
           this.createNotification(
             'Invalid Inspect Link',
             'Please enter a valid CS:GO inspect link.',
-            false,
+            true,
           );
 
           return;
