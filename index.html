@@ -77,7 +77,7 @@
           </label>
           <input v-model="link"
                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                 id="inspect_link" type="text" placeholder="Paste your inspect link...">
+                 id="inspect_link" type="text" placeholder="Paste your inspect link here...">
         </div>
         <div class="flex items-center justify-between">
           <button v-on:click="inspectLink"
@@ -196,16 +196,20 @@
       },
 
       createNotification(title, message, isError = false) {
-        this.notification = {
-          title,
-          message,
-          isError,
-        };
+        this.clearNotification();
+
+        this.$nextTick(() => {
+          this.notification = {
+            title,
+            message,
+            isError,
+          };
+        });
       },
 
       clearNotification() {
         this.notification = null;
-      }
+      },
     }
   })
 </script>
