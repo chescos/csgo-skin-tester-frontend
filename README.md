@@ -31,6 +31,8 @@ npm run lint
 - Make proper breadcrumbs
 - Remove notifications after X seconds
 - Allow to remove notification through button
+- Add glove images
+- Add proper loading screen
 
 ## Software Suite
 
