@@ -42,7 +42,7 @@ export default {
         return;
       }
 
-      this.$store.commit('setNotification', null);
+      this.$store.commit('clearNotification');
 
       const inspectLinkRegex = /^steam:\/\/rungame\/730\/(?:[0-9]+)\/\+csgo_econ_action_preview/;
 

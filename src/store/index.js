@@ -21,7 +21,14 @@ export default new Vuex.Store({
     },
 
     setNotification: (state, payload) => {
-      state.notification = payload;
+      state.notification = {
+        ...payload,
+        removeAt: Date.now() + 5000,
+      };
+    },
+
+    clearNotification: (state) => {
+      state.notification = null;
     },
   },
 
@@ -65,7 +72,7 @@ export default new Vuex.Store({
     },
 
     createNotification: (context, payload) => {
-      context.commit('setNotification', null);
+      context.commit('clearNotification');
 
       setTimeout(() => {
         context.commit('setNotification', {

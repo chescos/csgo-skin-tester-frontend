@@ -27,8 +27,6 @@ npm run lint
 ## Todo
 
 - Replace logo
-- Remove notifications after X seconds
-- Allow to remove notification through button
 - Add glove images
 - Add proper 404 page
 - Add 404 on wrong item/category
