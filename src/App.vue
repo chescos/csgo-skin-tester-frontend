@@ -7,7 +7,7 @@
         </div>
       </div>
       <div v-else key="content">
-        <nav class="bg-blue-500 p-6 fixed w-full">
+        <nav class="bg-blue-700 p-6 fixed w-full">
           <div class="container px-6 mx-auto flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-shrink-0 text-white mr-6">
               <router-link :to="{ name: 'inspector' }" class="block">
@@ -20,7 +20,7 @@
             </div>
             <div class="block lg:hidden">
               <button
-                class="flex items-center px-3 py-2 border rounded text-blue-100 border-blue-400 hover:text-white hover:border-white">
+                class="flex items-center px-3 py-2 border rounded text-blue-100 border-blue-600 hover:text-white hover:border-white">
                 <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>
                   Menu</title>
                   <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
@@ -40,7 +40,7 @@
               <div class="block flex">
                 <a href="https://github.com/chescos/csgo-skin-tester-frontend"
                    target="_blank"
-                   class="block flex items-center hover:text-white mr-5 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 lg:mt-0">
+                   class="block flex items-center hover:text-white mr-5 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-700 hover:bg-white mt-4 lg:mt-0">
                   <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>
                     GitHub</title>
                     <path
@@ -50,7 +50,7 @@
                 </a>
                 <a href="https://chrome.google.com/webstore/detail/csgo-skin-tester/fmljflfbojphpnbijaceeemjapgkefin"
                    target="_blank"
-                   class="block flex items-center hover:text-white mr-5 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 lg:mt-0">
+                   class="block flex items-center hover:text-white mr-5 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-700 hover:bg-white mt-4 lg:mt-0">
                   <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 305 305"><title>
                     Extension</title>
                     <path
@@ -76,7 +76,7 @@
         </div>
 
         <transition name="fade" mode="out-in">
-          <div v-if="notification !== null" v-bind:class="{ 'bg-blue-800 border-blue-500': !notification.isError, 'bg-red-800 border-red-500': notification.isError }" class="fixed bottom-0 left-0 right-0 border-t-4 rounded-b text-white px-4 py-3 shadow-md" role="alert">
+          <div v-if="notification !== null" v-bind:class="{ 'bg-blue-700 border-blue-500': !notification.isError, 'bg-red-800 border-red-500': notification.isError }" class="fixed bottom-0 left-0 right-0 border-t-4 rounded-b text-white px-4 py-3 shadow-md" role="alert">
             <div class="flex">
               <div class="py-1">
                 <svg class="fill-current h-6 w-6 text-white mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

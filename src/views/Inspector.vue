@@ -13,7 +13,7 @@
         <div class="flex items-center justify-between">
           <button v-on:click="inspectLink"
                   v-bind:class="{ 'cursor-not-allowed opacity-50': isLoading }"
-                  class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  class="inline-flex items-center bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="button" :disabled="isLoading">
 
             <div v-if="isLoading" class="loader ease-linear rounded-full border-2 border-gray-200 h-4 w-4 mr-3"></div>
