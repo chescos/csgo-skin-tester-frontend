@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <h1>{{ item.name }}</h1>
+  <div>
+    <h1>{{ category.name }} > {{ item.name }}</h1>
     <div class="flex flex-wrap -mx-4">
       <div v-for="skin in item.skins" :key="skin.id" class="w-1/4 p-4 flex-none">
         <div class="border-2 border-blue-900 rounded cursor-pointer"
@@ -27,7 +27,6 @@ export default {
           skin_id: id,
         })
         .then((response) => {
-          console.log(response);
           const res = response.data;
 
           if (res.success) {
@@ -56,6 +55,14 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+
+          this.isLoading = false;
+
+          this.createNotification(
+            'Request Failed',
+            'Something went wrong, please try again.',
+            true,
+          );
         });
     },
   },

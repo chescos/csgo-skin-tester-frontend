@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
 import Category from '../views/Category.vue';
 import Item from '../views/Item.vue';
+import Inspector from '../views/Inspector.vue';
 import NotFound from '../views/NotFound.vue';
 
 Vue.use(VueRouter);
@@ -10,8 +10,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home,
+    name: 'inspector',
+    component: Inspector,
   },
   {
     path: '/categories/:category',

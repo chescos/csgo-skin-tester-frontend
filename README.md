@@ -24,6 +24,14 @@ npm run build
 npm run lint
 ```
 
+## Todo
+
+- Replace logo
+- Make proper transitions between views
+- Make proper breadcrumbs
+- Remove notifications after X seconds
+- Allow to remove notification through button
+
 ## Software Suite
 
 The CS:GO Skin Tester frontend works in conjunction with a set of related tools. At least the NodeJS Backend and the SourceMod plugin for the CS:GO server are required to make it work.
