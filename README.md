@@ -27,7 +27,6 @@ npm run lint
 ## Todo
 
 - Replace logo
-- Make proper breadcrumbs
 - Remove notifications after X seconds
 - Allow to remove notification through button
 - Add glove images

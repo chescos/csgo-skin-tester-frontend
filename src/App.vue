@@ -31,9 +31,9 @@
               <div class="text-sm lg:flex-grow">
                 <router-link v-for="(category, slug) in categories"
                              :to="{ name: 'category', params: { category: slug }}"
-                             :active-class="'text-white border-b-2'"
+                             :active-class="'text-white border-white'"
                              :key="slug"
-                             class="block mt-4 lg:inline-block lg:mt-0 text-blue-100 hover:text-white mr-4">
+                             class="block mt-4 lg:inline-block lg:mt-0 text-blue-100 hover:text-white mr-4 border-b-2 border-transparent">
                   {{ category.name }}
                 </router-link>
               </div>
