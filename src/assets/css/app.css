@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    overflow-y: scroll;
+}
+
 [v-cloak] {
     display: none;
 }

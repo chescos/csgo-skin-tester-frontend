@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "autoprefixer": "^9.8.5",
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "slugify": "^1.4.5",
     "tailwindcss": "^1.5.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
