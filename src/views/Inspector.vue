@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen -mt-32 -mb-20">
+  <div class="flex h-screen -mt-32 -mb-20" key="inspector">
     <div class="m-auto w-full max-w-lg">
       <form class="bg-gray-800 shadow-md rounded p-12">
         <div class="mb-4">

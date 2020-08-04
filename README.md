@@ -27,12 +27,12 @@ npm run lint
 ## Todo
 
 - Replace logo
-- Make proper transitions between views
 - Make proper breadcrumbs
 - Remove notifications after X seconds
 - Allow to remove notification through button
 - Add glove images
-- Add proper loading screen
+- Add proper 404 page
+- Add 404 on wrong item/category
 
 ## Software Suite
 

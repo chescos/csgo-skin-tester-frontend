@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :key="'category' + categorySlug">
     <h1>{{ category.name }}</h1>
     <div class="flex flex-wrap -mx-4">
       <div v-for="(item, itemSlug) in category.items" :key="itemSlug" class="w-1/4 p-4 flex-none">
