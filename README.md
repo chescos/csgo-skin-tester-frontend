@@ -33,6 +33,7 @@ npm run lint
 - Add glove images
 - Add proper 404 page
 - Add 404 on wrong item/category
+- Make responsive
 
 ## Software Suite
 
