@@ -26,7 +26,6 @@ npm run lint
 
 ## Todo
 
-- Replace logo
 - Add glove images
 - Add proper 404 page
 - Add 404 on wrong item/category
