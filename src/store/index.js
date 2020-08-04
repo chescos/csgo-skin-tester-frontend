@@ -7,6 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    notification: null,
     categories: null,
   },
 
@@ -17,6 +18,10 @@ export default new Vuex.Store({
   mutations: {
     setCategories: (state, payload) => {
       state.categories = payload.categories;
+    },
+
+    setNotification: (state, payload) => {
+      state.notification = payload;
     },
   },
 
@@ -57,6 +62,18 @@ export default new Vuex.Store({
         .catch((error) => {
           console.log(error);
         });
+    },
+
+    createNotification: (context, payload) => {
+      context.commit('setNotification', null);
+
+      setTimeout(() => {
+        context.commit('setNotification', {
+          title: payload.title,
+          message: payload.message,
+          isError: payload.isError || false,
+        });
+      }, 25);
     },
   },
 
