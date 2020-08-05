@@ -65,9 +65,6 @@ export default new Vuex.Store({
           context.commit('setCategories', {
             categories,
           });
-        })
-        .catch((error) => {
-          console.log(error);
         });
     },
 

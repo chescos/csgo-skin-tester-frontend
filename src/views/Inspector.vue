@@ -90,9 +90,7 @@ export default {
             });
           }
         })
-        .catch((error) => {
-          console.log(error);
-
+        .catch(() => {
           this.isLoading = false;
 
           this.$store.dispatch('createNotification', {
