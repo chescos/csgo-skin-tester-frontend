@@ -17,6 +17,6 @@ git add -A
 git commit -m 'deploy'
 
 # we are deploying to https://<USERNAME>.github.io/<REPO>
-# git push -f git@github.com:chescos/csgo-skin-tester-frontend.git master:gh-pages
+git push -f git@github.com:chescos/csgo-skin-tester-frontend.git master:gh-pages
 
 cd -
