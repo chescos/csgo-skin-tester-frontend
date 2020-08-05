@@ -15,7 +15,7 @@
           <svg v-on:click="closeConfigurator()" class="fill-current text-gray-500 hover:text-white absolute p-1 w-8 h-8 cursor-pointer" viewBox="0 0 20 20" style="top: 4px; right: 4px;" xmlns="http://www.w3.org/2000/svg">
             <path d="M4.29289 4.29289C4.68342 3.90237 5.31658 3.90237 5.70711 4.29289L10 8.58579L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L11.4142 10L15.7071 14.2929C16.0976 14.6834 16.0976 15.3166 15.7071 15.7071C15.3166 16.0976 14.6834 16.0976 14.2929 15.7071L10 11.4142L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L8.58579 10L4.29289 5.70711C3.90237 5.31658 3.90237 4.68342 4.29289 4.29289Z"/>
           </svg>
-          <form class="py-3 px-6">
+          <form class="py-3 px-8">
             <div class="mb-8">
               <label class="block text-white text-sm font-bold mb-2" for="seed">
                 Seed
@@ -36,16 +36,16 @@
                     class="toggle__dot absolute w-8 h-8 bg-gray-600 rounded-full shadow"
                   ></div>
                 </div>
-                <div class="ml-6 text-70 font-medium">{{ config.stattrak ? 'StatTrak™' : 'Normal' }}</div>
+                <div class="ml-6 font-medium" :class="{ 'text-white': !config.stattrak, 'text-stattrak': config.stattrak, }">{{ config.stattrak ? 'StatTrak™' : 'Normal' }}</div>
               </label>
             </div>
             <div>
               <label class="block text-white text-sm font-bold mb-2" for="wear">
                 Wear
               </label>
-              <vue-slider id="wear" v-model="config.wear" min="0.01" max="0.99" interval="0.01" tooltipPlacement="bottom" tooltip="always"></vue-slider>
+              <vue-slider id="wear" v-model="config.wear" :min="0.01" :max="0.99" :interval="0.01" tooltipPlacement="bottom" tooltip="always"></vue-slider>
             </div>
-            <button v-on:click="equipSkin(skin.id)" class="absolute bottom-0 left-0 right-0 w-full rounded-b bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">
+            <button v-on:click="equipSkin(skin.id)" class="absolute bottom-0 left-0 right-0 w-full rounded-b bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" type="button">
               Submit
             </button>
           </form>

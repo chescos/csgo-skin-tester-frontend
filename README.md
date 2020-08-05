@@ -26,7 +26,6 @@ npm run lint
 
 ## Todo
 
-- Set up CI for GitHub pages deployment
 - Add proper 404 page
 - Add 404 on wrong item/category
 - Make responsive
