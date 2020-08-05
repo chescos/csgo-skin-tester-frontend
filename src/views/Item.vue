@@ -118,7 +118,7 @@ export default {
           skin_id: id,
           wear: this.config.wear,
           seed: this.config.seed,
-          stattrak: this.stattrak ? 0 : -1,
+          stattrak: this.config.stattrak ? 0 : -1,
         })
         .then((response) => {
           const res = response.data;
