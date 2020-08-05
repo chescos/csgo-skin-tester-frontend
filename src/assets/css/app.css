@@ -48,3 +48,13 @@ html {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
 }
+
+.toggle__dot {
+    top: -.25rem;
+    left: -.25rem;
+    transition: all 0.3s ease-in-out;
+}
+input:checked ~ .toggle__dot {
+    transform: translateX(100%);
+    background-color: #48bb78;
+}

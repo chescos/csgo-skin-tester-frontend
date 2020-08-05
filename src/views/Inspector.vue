@@ -95,11 +95,11 @@ export default {
 
           this.isLoading = false;
 
-          this.createNotification(
-            'Request Failed',
-            'Something went wrong, please try again.',
-            true,
-          );
+          this.$store.dispatch('createNotification', {
+            title: 'Request Failed',
+            message: 'Something went wrong, please try again',
+            isError: true,
+          });
         });
     },
   },
