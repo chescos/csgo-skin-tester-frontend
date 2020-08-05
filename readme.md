@@ -1,6 +1,6 @@
 ## CS:GO Skin Tester Frontend
 
-This is a frontend that works with the CS:GO Skin Tester NodeJS backend.
+This is a frontend that works with the CS:GO Skin Tester Node.js backend.
 
 ## Software Suite
 
