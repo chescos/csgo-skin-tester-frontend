@@ -30,13 +30,13 @@
             </div>
             <div v-if="!isMobile || menuOpen" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
               <div class="text-sm lg:flex-grow">
-                <router-link v-for="(category, slug) in categories"
+                <router-link v-for="slug in orderedCategories"
                              :to="{ name: 'category', params: { category: slug }}"
                              :active-class="'text-white border-white'"
                              :key="slug"
                              v-on:click.native="closeMenu()"
                              class="block mt-4 lg:inline-block lg:mt-0 text-blue-100 hover:text-white mr-4 border-b-2 border-transparent">
-                  {{ category.name }}
+                  {{ categories[slug].name }}
                 </router-link>
               </div>
               <div v-if="!isMobile" class="block flex">
@@ -157,6 +157,17 @@ export default {
 
     categories() {
       return this.$store.state.categories;
+    },
+
+    orderedCategories() {
+      return [
+        'knives',
+        'gloves',
+        'rifles',
+        'pistols',
+        'smgs',
+        'heavy',
+      ];
     },
   },
 };

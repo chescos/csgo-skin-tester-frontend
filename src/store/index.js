@@ -36,14 +36,26 @@ export default new Vuex.Store({
     fetchInitialData: (context) => {
       axios.get('https://api.csgoskins.gg/skins')
         .then((response) => {
+          const map = {
+            Shotgun: 'Heavy',
+            Machinegun: 'Heavy',
+            Gloves: 'Gloves',
+            Knife: 'Knives',
+            SMG: 'SMGs',
+            Rifle: 'Rifles',
+            'Sniper Rifle': 'Rifles',
+            Pistol: 'Pistols',
+          };
+
           const categories = response.data.skins.reduce((result, skin) => {
-            const categorySlug = slugify(skin.item.type, { lower: true });
+            const category = map[skin.item.type] || skin.item.type;
+            const categorySlug = slugify(category, { lower: true });
             const itemSlug = slugify(skin.item.name, { lower: true });
 
             if (!result[categorySlug]) {
               // eslint-disable-next-line no-param-reassign
               result[categorySlug] = {
-                name: skin.item.type,
+                name: category,
                 items: {},
               };
             }
