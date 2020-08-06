@@ -14,7 +14,7 @@ const routes = [
     component: Inspector,
   },
   {
-    path: '/categories/:category',
+    path: '/:category',
     name: 'category',
     component: Category,
     meta: {
@@ -22,7 +22,7 @@ const routes = [
     },
   },
   {
-    path: '/categories/:category/items/:item',
+    path: '/:category/:item',
     name: 'item',
     component: Item,
     meta: {
@@ -30,11 +30,17 @@ const routes = [
     },
   },
   {
-    path: '*',
+    path: '/404',
     name: 'not-found',
     component: NotFound,
     meta: {
       title: 'Not Found',
+    },
+  },
+  {
+    path: '*',
+    redirect: {
+      name: 'not-found',
     },
   },
 ];

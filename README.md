@@ -27,7 +27,6 @@ npm run lint
 ## Todo
 
 - Add proper 404 page
-- Add 404 on wrong item/category
 
 ## Software Suite
 

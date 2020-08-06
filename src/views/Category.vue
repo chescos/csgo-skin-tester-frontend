@@ -20,6 +20,16 @@
 export default {
   name: 'Category',
 
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      if (vm.category === undefined) {
+        next({ name: 'not-found' });
+      }
+
+      next();
+    });
+  },
+
   computed: {
     categorySlug() {
       return this.$route.params.category;
