@@ -11,7 +11,7 @@
       <span>{{ item.name }}</span>
     </h1>
     <div class="flex flex-wrap -mx-4">
-      <div v-for="skin in item.skins" :key="skin.id" class="w-1/4 p-4 flex-none">
+      <div v-for="skin in item.skins" :key="skin.id" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 flex-none">
         <div v-if="skin.id === configurator" style="min-height: 290px;"
              class="rounded bg-gray-800 shadow-md relative h-full">
           <svg v-on:click="closeConfigurator()"

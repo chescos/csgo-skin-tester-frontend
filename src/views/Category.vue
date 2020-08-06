@@ -2,7 +2,7 @@
   <div :key="'category' + categorySlug">
     <h1>{{ category.name }}</h1>
     <div class="flex flex-wrap -mx-4">
-      <div v-for="(item, itemSlug) in category.items" :key="itemSlug" class="w-1/4 p-4 flex-none">
+      <div v-for="(item, itemSlug) in category.items" :key="itemSlug" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 flex-none">
         <router-link :to="{ name: 'item', params: { category: categorySlug, item: itemSlug }}" :key="itemSlug"
                      class="block">
           <div class="border-4 border-gray-800 rounded shadow-md flex flex-wrap"
