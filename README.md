@@ -24,10 +24,6 @@ npm run build
 npm run lint
 ```
 
-## Todo
-
-- Add proper 404 page
-
 ## Software Suite
 
 The CS:GO Skin Tester frontend works in conjunction with a set of related tools. At least the NodeJS Backend and the SourceMod plugin for the CS:GO server are required to make it work.
