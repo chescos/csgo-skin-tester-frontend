@@ -7,8 +7,8 @@
         </div>
       </div>
       <div v-else key="content">
-        <nav class="bg-blue-700 p-6 fixed w-full z-50">
-          <div class="container px-6 mx-auto flex items-center justify-between flex-wrap">
+        <nav class="bg-blue-700 fixed w-full z-50">
+          <div class="container p-6 mx-auto flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-shrink-0 text-white mr-6">
               <router-link :to="{ name: 'inspector' }" class="block">
                 <svg class="fill-current h-8 w-auto" width="54" xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@
                 </svg>
               </router-link>
             </div>
-            <div class="block lg:hidden">
+            <div class="block md:hidden">
               <button
                 v-on:click="toggleMenu()"
                 class="flex items-center px-3 py-2 border rounded text-white border-white">
@@ -28,21 +28,21 @@
                 </svg>
               </button>
             </div>
-            <div v-if="!isMobile || menuOpen" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-              <div class="text-sm lg:flex-grow">
+            <div v-if="!isMobile || menuOpen" class="w-full block flex-grow md:flex md:items-center md:w-auto">
+              <div class="text-sm md:flex-grow">
                 <router-link v-for="slug in orderedCategories"
                              :to="{ name: 'category', params: { category: slug }}"
                              :active-class="'text-white border-white'"
                              :key="slug"
                              v-on:click.native="closeMenu()"
-                             class="block mt-4 lg:inline-block lg:mt-0 text-blue-100 hover:text-white mr-4 border-b-2 border-transparent">
+                             class="block mt-4 md:inline-block md:mt-0 text-blue-100 hover:text-white mr-4 border-b-2 border-transparent">
                   {{ categories[slug].name }}
                 </router-link>
               </div>
               <div v-if="!isMobile" class="block flex">
                 <a href="https://github.com/chescos/csgo-skin-tester-frontend"
                    target="_blank"
-                   class="block flex items-center hover:text-white mr-5 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-700 hover:bg-white mt-4 lg:mt-0">
+                   class="block flex items-center hover:text-white mr-5 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-700 hover:bg-white mt-4 md:mt-0">
                   <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>
                     GitHub</title>
                     <path
@@ -52,7 +52,7 @@
                 </a>
                 <a href="https://chrome.google.com/webstore/detail/csgo-skin-tester/fmljflfbojphpnbijaceeemjapgkefin"
                    target="_blank"
-                   class="block flex items-center hover:text-white mr-5 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-700 hover:bg-white mt-4 lg:mt-0">
+                   class="block flex items-center hover:text-white text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-700 hover:bg-white mt-4 md:mt-0">
                   <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 305 305"><title>
                     Extension</title>
                     <path
@@ -148,7 +148,7 @@ export default {
     },
 
     isMobile() {
-      return this.width < 1024;
+      return this.width < 768;
     },
 
     notification() {
