@@ -113,13 +113,17 @@ export default {
     equipSkin(id) {
       this.closeConfigurator();
 
-      axios
-        .post('https://api.csgoskins.gg/tests/id', {
+      axios({
+        url: 'https://api.csgoskins.gg/tests/id',
+        method: 'post',
+        data: {
           skin_id: id,
           wear: this.config.wear,
           seed: this.config.seed,
           stattrak: this.config.stattrak ? 0 : -1,
-        })
+        },
+        validateStatus: () => true,
+      })
         .then((response) => {
           const res = response.data;
 

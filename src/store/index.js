@@ -34,7 +34,10 @@ export default new Vuex.Store({
 
   actions: {
     fetchInitialData: (context) => {
-      axios.get('https://api.csgoskins.gg/skins')
+      axios({
+        url: 'https://api.csgoskins.gg/skins',
+        method: 'get',
+      })
         .then((response) => {
           const map = {
             Shotgun: 'Heavy',

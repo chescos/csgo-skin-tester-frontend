@@ -44,7 +44,7 @@ export default {
 
       this.$store.commit('clearNotification');
 
-      const inspectLinkRegex = /^steam:\/\/rungame\/730\/(?:[0-9]+)\/\+csgo_econ_action_preview/;
+      const inspectLinkRegex = /^steam/;
 
       if (!inspectLinkRegex.test(this.link)) {
         this.$store.dispatch('createNotification', {
@@ -58,10 +58,14 @@ export default {
 
       this.isLoading = true;
 
-      axios
-        .post('https://api.csgoskins.gg/tests/link', {
+      axios({
+        url: 'https://api.csgoskins.gg/tests/link',
+        method: 'post',
+        data: {
           link: this.link,
-        })
+        },
+        validateStatus: () => true,
+      })
         .then((response) => {
           const res = response.data;
           this.isLoading = false;
