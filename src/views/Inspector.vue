@@ -44,7 +44,7 @@ export default {
 
       this.$store.commit('clearNotification');
 
-      const inspectLinkRegex = /^steam/;
+      const inspectLinkRegex = /^steam:\/\/rungame\/730\/(?:[0-9]+)\/\+csgo_econ_action_preview/;
 
       if (!inspectLinkRegex.test(this.link)) {
         this.$store.dispatch('createNotification', {
