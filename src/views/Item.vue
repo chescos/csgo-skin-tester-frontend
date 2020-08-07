@@ -88,6 +88,16 @@ import 'vue-slider-component/theme/default.css';
 export default {
   name: 'Item',
 
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      if (vm.category === undefined || vm.item === undefined) {
+        next({ name: 'not-found' });
+      }
+
+      next();
+    });
+  },
+
   components: {
     VueSlider,
   },
